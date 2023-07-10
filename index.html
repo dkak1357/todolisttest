@@ -294,7 +294,8 @@
                 </div>
             </div>
         </div>
-        
+
+
         <button id="btn_reqPermission" style="display: none;padding: 2em">
             Hey! This will be much better with sensors. Allow?
         </button>
@@ -302,10 +303,10 @@
         
         <script>
             var btn_reqPermission = document.getElementById("btn_reqPermission")
-        btn_reqPermission.addEventListener("click", () => { this.checkMotionPermission() })
+            btn_reqPermission.addEventListener("click", () => { this.checkMotionPermission() })
         
-        // ON PAGE LOAD
-        this.checkMotionPermission()
+        // ON PAGE LOAD 
+        window.onload.checkMotionPermission()
         
         
         // FUNCTIONS
