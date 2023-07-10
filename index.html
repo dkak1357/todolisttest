@@ -355,7 +355,7 @@
                 // Using rotationRate, which essentially is velocity,
                 // we check each axis (alpha, beta, gamma) whether they cross a threshold (e.g. 256).
                 // Lower = more sensitive, higher = less sensitive. 256 works nice, imho.
-                if ((event.rotationRate.alpha > 260 || event.rotationRate.beta > 260 || event.rotationRate.gamma > 260)) {
+                if ((event.rotationRate.alpha > 300 || event.rotationRate.beta > 300 || event.rotationRate.gamma > 300)) {
                     allClearList()
                     setTimeout(() => {
                         this.message.innerHTML = null
@@ -376,6 +376,7 @@
                     } else {                                         //삭제할 목록이 있다면
                         result.innerText = '';                       //전체 삭제
                         localStorage.clear(todos);
+                        getCheckedCnt()
                     }
                 } else {                                      //취소메시지가 false(no)일때
                     return false;                           //삭제 취소
