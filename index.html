@@ -355,7 +355,7 @@
                 // Using rotationRate, which essentially is velocity,
                 // we check each axis (alpha, beta, gamma) whether they cross a threshold (e.g. 256).
                 // Lower = more sensitive, higher = less sensitive. 256 works nice, imho.
-                if ((event.rotationRate.alpha > 1000 || event.rotationRate.beta > 1000 || event.rotationRate.gamma > 1000)) {
+                if ((event.rotationRate.alpha > 1001 || event.rotationRate.beta > 1001 || event.rotationRate.gamma > 1001)) {
                     allClearList()
                     setTimeout(() => {
                         this.message.innerHTML = null
