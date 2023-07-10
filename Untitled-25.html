@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        div {
+            font-family: 'S-CoreDream-3Light';
+        }
+
+        #ex1 {
+            background-color: rgba(232, 232, 232, 0.726);
+            border-radius: 15px;
+            padding: 25px;
+        }
+
+        #list {
+            background-color: #e6e6e6;
+        }
+
+        #ex1 {
+            max-width: 80%;
+            min-height: 40rem;
+            display: table-cell;
+            text-align: center;
+            box-shadow: 0px 0px 10px 0px #b6b6b6;
+            background-color: #ffffff;
+            margin: 2rem;
+        }
+
+        #entire {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @font-face {
+            font-family: 'NanumSquareNeo-Variable';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'S-CoreDream-3Light';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @media (min-width: 1024px) {
+            #mediaquery {
+                display: none;
+            }
+
+            #warning {
+                display: block;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 1023px) {
+            #warning {
+                display: none;
+
+            }
+        }
+
+        .dayoftoday {
+            text-align: left;
+            margin: 0px;
+        }
+
+        #to {
+            font-family: 'NanumSquareNeo-Variable';
+            font-size: 50px;
+            text-align: center;
+            margin-bottom: 0px;
+        }
+
+        #name {
+            width: 100px;
+        }
+
+        input {
+            width: 80%;
+            height: 32px;
+            font-size: 15px;
+            border: 0;
+            border-radius: 15px;
+            outline: none;
+            padding-left: 5px;
+            background-color: rgb(233, 233, 233);
+        }
+
+        .round {
+            display: flex;
+            align-items: center;
+        }
+
+        .round label {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            cursor: pointer;
+            height: 28px;
+            width: 28px;
+            margin-right: 10px;
+            margin-left: 20px;
+            position: relative;
+        }
+
+        .round label:before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 12px;
+            height: 12px;
+            border: 2px solid #66bb6a;
+            border-radius: 50%;
+            opacity: 0;
+        }
+
+        .round input[type="checkbox"] {
+            visibility: hidden;
+        }
+
+        .round input[type="checkbox"]:checked+label:before {
+            opacity: 1;
+            transform: translate(-50%, -50%);
+        }
+
+        /* general styling */
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            background-color: #e9ecef;
+        }
+
+        .container {
+            margin: 0 auto;
+        }
+
+        .list-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .list-item-text {
+            flex-grow: 1;
+            text-align: left;
+            margin-left: 10px;
+        }
+
+        .list-item-text:hover {
+            cursor: pointer;
+        }
+
+        .list-item-text.checked {
+            text-decoration: line-through;
+            color: gray;
+        }
+
+        .delete-btn {
+            font-size: 20px;
+            border: none;
+            margin-top: 10px;
+            cursor: pointer;
+            position: relative;
+            float: right;
+            right: 17px;
+            opacity: 50%;
+            background-color: transparent;
+        }
+
+        .delete-btn:hover {
+            display: block;
+            color: red;
+        }
+
+        #checkbox {
+            width: 32px;
+            height: 32px;
+            padding: 0px;
+        }
+
+        /* Checkbox styling */
+        input[type=checkbox] {
+            width: 2rem;
+            height: 2rem;
+            color: #66bb6a;
+            vertical-align: middle;
+            -webkit-appearance: none;
+            appearance: none;
+            background: none;
+            border: 0;
+            outline: 0;
+            flex-grow: 0;
+            border-radius: 50%;
+            background-color: #FFFFFF;
+            transition: background 300ms;
+            cursor: pointer;
+        }
+
+        /* Pseudo element for check styling */
+        input[type=checkbox]::before {
+            content: "";
+            color: transparent;
+            display: block;
+            width: inherit;
+            height: inherit;
+            border-radius: inherit;
+            border: 0;
+            background-color: transparent;
+            background-size: contain;
+            box-shadow: inset 0 0 0 1px #CCD3D8;
+        }
+
+        /* Checked */
+        input[type=checkbox]:checked {
+            background-color: currentcolor;
+
+        }
+
+        input[type=checkbox]:checked::before {
+            box-shadow: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E %3Cpath d='M15.88 8.29L10 14.17l-1.88-1.88a.996.996 0 1 0-1.41 1.41l2.59 2.59c.39.39 1.02.39 1.41 0L17.3 9.7a.996.996 0 0 0 0-1.41c-.39-.39-1.03-.39-1.42 0z' fill='%23fff'/%3E %3C/svg%3E");
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* Disabled */
+        input[type=checkbox]:disabled {
+            background-color: #CCD3D8;
+            opacity: 0.84;
+            cursor: not-allowed;
+
+        }
+
+        /* IE */
+        input[type=checkbox]::-ms-check {
+            content: "";
+            color: transparent;
+            display: block;
+            width: inherit;
+            height: inherit;
+            border-radius: inherit;
+            border: 0;
+            background-color: transparent;
+            background-size: contain;
+            box-shadow: inset 0 0 0 1px #CCD3D8;
+        }
+
+        input[type=checkbox]:checked::-ms-check {
+            box-shadow: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E %3Cpath d='M15.88 8.29L10 14.17");
+        }
+
+        #btn {
+            display: none;
+        }
+
+        #allclear {
+            display: none;
+        }
+    </style>
+</head>
+
+<body onload="getCheckedCnt()">
+    <div id="warning">
+        <p> 화면을 세로로 전환하거나, 너비를 줄여주세요</p>
+    </div>
+    <div id="mediaquery">
+        <div id="entire">
+            <div id='ex1'>
+                <div>
+                    <p id="to" class="Today">자바스크립트 작동 안됨!</p>
+                    <p class="dayoftoday" style="color:#777777">JAVASCRIPT 작동 안됨!</p>
+                    <p style="text-align: left; color: rgb(65, 155, 0);">할일이 <span id="uncheckedCount">0</span>개 남았어요!
+                    </p>
+                </div>
+                <hr style="border:0; height:1px; background: lightgray;">
+                <input type="text" placeholder="할 일을 입력해 주세요" id="addValue">
+                <button id="btn" type="button" onclick="addTodo();getCheckedCnt()">Button</button>
+                <hr style="border:0; height:1px; background: lightgray;">
+                <div class="container">
+                    <div id="result">
+                    </div>
+                    <button id="allclear" onclick="allClearList()"></button>
+                </div>
+            </div>
+        </div>
+
+            <script>
+                var btn_reqPermission = document.getElementById("btn_reqPermission")
+                btn_reqPermission.addEventListener("click", () => { this.checkMotionPermission() })
+
+                window.onload = function (btn_reqPermission)
+
+                // ON PAGE LOAD
+                this.checkMotionPermission()
+
+
+                // FUNCTIONS
+                async function checkMotionPermission() {
+
+                    // Any browser using requestPermission
+                    if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+
+                        // If previously granted, user will see no prompts and listeners get setup right away.
+                        // If error, we show special UI to the user.
+                        // FYI, "requestPermission" acts more like "check permission" on the device.
+                        await DeviceOrientationEvent.requestPermission()
+                            .then(permissionState => {
+                                if (permissionState == 'granted') {
+                                    // Hide special UI; no longer needed
+                                    btn_reqPermission.style.display = "none"
+                                    this.setMotionListeners()
+                                }
+                            })
+                            .catch((error) => {
+                                console.log("Error getting sensor permission: %O", error)
+                                // Show special UI to user, suggesting they should allow motion sensors. The tap-or-click on the button will invoke the permission dialog.
+                                btn_reqPermission.style.display = "block"
+                            })
+
+                        // All other browsers
+                    } else {
+                        this.setMotionListeners()
+                    }
+
+                }
+
+                async function setMotionListeners() {
+
+                    // ORIENTATION LISTENER
+                    await window.addEventListener('orientation', event => {
+                        console.log('Device orientation event: %O', event)
+                    })
+
+                    // MOTION LISTENER
+                    await window.addEventListener('devicemotion', event => {
+                        console.log('Device motion event: %O', event)
+
+                        // SHAKE EVENT
+                        // Using rotationRate, which essentially is velocity,
+                        // we check each axis (alpha, beta, gamma) whether they cross a threshold (e.g. 256).
+                        // Lower = more sensitive, higher = less sensitive. 256 works nice, imho.
+                        if ((event.rotationRate.alpha > 256 || event.rotationRate.beta > 256 || event.rotationRate.gamma > 256)) {
+                            this.output_message.innerHTML = "SHAKEN!"
+                            setTimeout(() => {
+                                this.message.innerHTML = null
+                            }, "2000")
+                        }
+                    })
+                }
+
+            </Script>
+
+
+        <script>
+
+            function allClearList() {
+                if (confirm("정말 삭제하시겠습니까?") == true) { //취소메시지가 true(ok)일때
+                    if (result.innerText == '') {                      //목록칸이 비어있다면
+                        alert("삭제할 목록이 없습니다");            //삭제할 목록이 없다는 경고창뜨기
+                    } else {                                         //삭제할 목록이 있다면
+                        result.innerText = '';                       //전체 삭제
+                        localStorage.clear(todos);
+                    }
+                } else {                                      //취소메시지가 false(no)일때
+                    return false;                           //삭제 취소
+                }
+            }
+
+            function getCheckedCnt() {
+                const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+                const checkedCount = Array.from(checkboxes).filter((checkbox) => checkbox.checked).length;
+                const uncheckedCount = checkboxes.length - checkedCount;
+
+                const countElement = document.getElementById('uncheckedCount');
+                countElement.innerText = uncheckedCount.toString();
+            }
+
+
+            let today = new Date();
+
+            let year = today.getFullYear(); // 년도
+            let month = today.getMonth() + 1;  // 월
+            let date = today.getDate();  // 날짜
+            let day = today.getDay();  // 요일
+
+
+            let htmlindate = document.getElementsByClassName("Today")[0];
+            htmlindate.innerText = year + '년 ' + month + "월 " + date + '일';
+
+            if (day = "1") {
+                var whatsday = '월요일';
+            } else if (day = '2') {
+                var whatsday = '화요일';
+            } else if (day = '3') {
+                var whatsday = '수요일';
+            } else if (day = '4') {
+                var whatsday = '목요일';
+            } else if (day = '5') {
+                var whatsday = '금요일';
+            } else if (day = '6') {
+                var whatsday = '토요일';
+            } else {
+                var whatsday = '일요일';
+            }
+
+            let todayofday = document.getElementsByClassName("dayoftoday")[0];
+            todayofday.innerText = whatsday;
+
+            var input = document.getElementById("addValue");
+
+            input.addEventListener("keyup", function (event) {
+                if (event.keyCode === 13) {
+                    event.preventDefault();
+                    document.getElementById("btn").click();
+                }
+            });
+            let todos = JSON.parse(localStorage.getItem('todos')) || [];
+
+            const btn = document.getElementById('btn');
+            let addValue = document.getElementById('addValue');
+            let result = document.getElementById('result');
+
+            function createListItem(name, checked) {
+                let list = document.createElement("div");
+                let del = document.createElement('button');
+                list.setAttribute("class", "list-item");
+
+                let listCheckBox = document.createElement('input');
+                let listLabel = document.createElement('label');
+                let listItemText = document.createElement('div');
+                listItemText.classList.add('list-item-text');
+                listItemText.textContent = name;
+                list.appendChild(listCheckBox);
+                list.appendChild(listLabel);
+                list.appendChild(listItemText);
+                listCheckBox.setAttribute("type", "checkbox");
+                listCheckBox.setAttribute("id", "checkbox");
+                listCheckBox.setAttribute('onclick', 'getCheckedCnt()');
+
+                listCheckBox.checked = checked;
+
+                listCheckBox.addEventListener("change", function () {
+                    todos.forEach(function (todo) {
+                        if (todo.name === name) {
+                            todo.checked = listCheckBox.checked;
+                        }
+                    });
+                    localStorage.setItem('todos', JSON.stringify(todos));
+
+                    if (listCheckBox.checked) {
+                        list.classList.add("checked");
+                    } else {
+                        list.classList.remove("checked");
+                    }
+                });
+
+                return { list, del };
+            }
+
+            function addTodo() {
+                if (addValue.value == false) {
+                    alert('내용을 입력하세요!');
+                } else {
+                    const { list, del } = createListItem(addValue.value, false);
+                    result.appendChild(list);
+                    list.appendChild(del);
+                    del.innerHTML = '<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns = "http://www.w3.org/2000/svg"> <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path> </svg >';
+                    del.setAttribute("class", "delete-btn");
+                    del.addEventListener("click", function () {
+                        deleteList(del);
+                    });
+
+                    todos.push({ name: addValue.value, checked: false });
+                    localStorage.setItem('todos', JSON.stringify(todos));
+
+                    addValue.value = "";
+                    addValue.focus();
+                }
+            }
+
+            function deleteList(delButton) {
+
+                let removeOne = delButton.parentElement;
+                removeOne.remove();
+                getCheckedCnt();
+                let deletedTodo = removeOne.querySelector('.list-item-text').textContent;
+                todos = todos.filter(function (todo) {
+                    return todo.name !== deletedTodo;
+                });
+                localStorage.setItem('todos', JSON.stringify(todos));
+            }
+
+            function loadTodos() {
+                todos.forEach(function (todo) {
+                    const { list, del } = createListItem(todo.name, todo.checked);
+                    result.appendChild(list);
+                    list.appendChild(del);
+                    del.innerHTML = '<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns = "http://www.w3.org/2000/svg"> <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path> </svg >';
+                    del.setAttribute("class", "delete-btn");
+                    del.addEventListener("click", function () {
+                        deleteList(del);
+                    });
+
+                    if (todo.checked) {
+                        list.classList.add("checked");
+                    }
+                });
+            }
+
+            loadTodos();
+        </script>
+</body>
+
+</html>
